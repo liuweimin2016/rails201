@@ -22,7 +22,8 @@ before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
     @group.user = current_user
 
     if @group.save
-     redirect_to groups_path
+      current_user.join!(@group)
+      redirect_to groups_path
     else
      render :new
    end
